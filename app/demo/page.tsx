@@ -51,7 +51,7 @@ export default function Demo() {
       case 'overview':
         return (
           <div className="text-green-400">
-            <div className="mb-2">$ otium "set up nginx with SSL for example.com"</div>
+            <div className="mb-2">$ otium &quot;set up nginx with SSL for example.com&quot;</div>
             <div className="text-gray-300 mb-4">Analyzing requirements...</div>
             <div className="text-blue-400 mb-2">✓ Installing nginx</div>
             <div className="text-blue-400 mb-2">✓ Configuring SSL certificate</div>
@@ -164,7 +164,7 @@ export default function Demo() {
                 <h3 className="heading-lg mb-4">{step.title}</h3>
                 <p className="text-body mb-4">{step.description}</p>
                 <div className="bg-gray-50 rounded-lg p-4 text-sm">
-                  <p className="text-gray-600 font-mono">"{step.example}"</p>
+                  <p className="text-gray-600 font-mono">&quot;{step.example}&quot;</p>
                 </div>
               </div>
             ))}

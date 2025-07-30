@@ -36,7 +36,7 @@ export default function Contact() {
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', company: '', message: '' });
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -66,7 +66,7 @@ export default function Contact() {
                 <CheckCircle className="w-16 h-16 text-green-600 mx-auto" />
                 <h3 className="heading-lg">Message Sent!</h3>
                 <p className="text-body">
-                  Thank you for reaching out. We'll get back to you within 24 hours.
+                  Thank you for reaching out. We&apos;ll get back to you within 24 hours.
                 </p>
                 <Button 
                   onClick={() => setSubmitStatus('idle')}

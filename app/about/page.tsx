@@ -22,7 +22,7 @@ export default function About() {
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               <span className="text-gray-300 ml-2 font-medium">otium-demo</span>
             </div>
-            <div className="text-green-400 mb-2">$ otium "set up nginx reverse proxy with SSL"</div>
+            <div className="text-green-400 mb-2">$ otium &quot;set up nginx reverse proxy with SSL&quot;</div>
             <div className="text-gray-300 mb-2">Analyzing requirements...</div>
             <div className="text-blue-400 mb-2">✓ Installing nginx</div>
             <div className="text-blue-400 mb-2">✓ Configuring SSL certificate</div>
