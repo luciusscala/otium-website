@@ -75,7 +75,7 @@ export default function FAQ() {
           {/* Additional Contact Info */}
           <div className="text-center mt-8 space-y-4">
             <p className="text-gray-400">
-              Still have questions? We're here to help.
+              Still have questions? We&apos;re here to help.
             </p>
             <p className="text-gray-400">
               Contact us at{' '}
