@@ -1,11 +1,32 @@
 import { Metadata } from "next";
 import "./globals.css";
+import { Header } from '@/components/header';
 
 export const metadata: Metadata = {
-  title: 'Otium',
+  title: 'Otium - The Cursor for DevOps Engineers',
   description: 'Transform Linux system administration through intelligent automation. AI-powered platform that understands natural language requests and executes complex DevOps tasks automatically.',
-  keywords: 'DevOps, Linux, automation, AI, system administration, infrastructure',
+  keywords: 'DevOps, Linux, automation, AI, system administration, infrastructure, nginx, ssl, deployment',
   authors: [{ name: 'Otium Technology' }],
+  openGraph: {
+    title: 'Otium - The Cursor for DevOps Engineers',
+    description: 'Transform Linux system administration through intelligent automation.',
+    type: 'website',
+    url: 'https://otium.tech',
+    siteName: 'Otium',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Otium - The Cursor for DevOps Engineers',
+    description: 'Transform Linux system administration through intelligent automation.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({
@@ -14,9 +35,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        {children}
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+      </head>
+      <body className="antialiased">
+        <Header />
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );

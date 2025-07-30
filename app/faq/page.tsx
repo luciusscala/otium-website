@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from '@/components/header';
 import {
   Accordion,
   AccordionContent,
@@ -45,26 +44,28 @@ const faqData = [
 
 export default function FAQ() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Header />
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="section text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="heading-xl mb-8">FAQ</h1>
+          <p className="text-body-lg max-w-2xl mx-auto">
+            Find answers to common questions about Otium and our AI-powered DevOps platform.
+          </p>
+        </div>
+      </section>
 
-      {/* Main Content */}
-      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4">
-        {/* Page Title */}
-        <h1 className="text-5xl md:text-6xl font-light text-center mb-12">
-          FAQ
-        </h1>
-        
-        {/* FAQ Content */}
-        <div className="max-w-4xl mx-auto w-full">
-          <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg p-8">
+      {/* FAQ Content Section */}
+      <section className="section section-alt">
+        <div className="max-w-4xl mx-auto">
+          <div className="card">
             <Accordion type="single" collapsible className="w-full">
               {faqData.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-gray-700">
-                  <AccordionTrigger className="text-left text-white hover:text-gray-300 transition-colors text-lg font-medium">
+                <AccordionItem key={index} value={`item-${index}`} className="border-gray-200">
+                  <AccordionTrigger className="text-left text-gray-900 hover:text-gray-700 transition-colors text-lg font-medium">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-300 leading-relaxed">
+                  <AccordionContent className="text-body leading-relaxed">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -74,18 +75,60 @@ export default function FAQ() {
           
           {/* Additional Contact Info */}
           <div className="text-center mt-8 space-y-4">
-            <p className="text-gray-400">
+            <p className="text-body">
               Still have questions? We&apos;re here to help.
             </p>
-            <p className="text-gray-400">
+            <p className="text-body">
               Contact us at{' '}
-              <a href="mailto:hello@otium.tech" className="text-white hover:text-gray-300 transition-colors underline">
-                hello@otium.tech
+              <a href="mailto:contact@otiumtech.dev" className="text-gray-900 hover:text-gray-700 transition-colors underline">
+                contact@otiumtech.dev
               </a>
             </p>
           </div>
         </div>
-      </main>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="section">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
+              <div>
+                <h3 className="font-medium mb-4">Product</h3>
+                <div className="space-y-2">
+                  <a href="/features" className="block text-body hover:text-gray-800">Features</a>
+                  <a href="/demo" className="block text-body hover:text-gray-800">Demo</a>
+                  <a href="/faq" className="block text-body hover:text-gray-800">FAQ</a>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-medium mb-4">Company</h3>
+                <div className="space-y-2">
+                  <a href="/about" className="block text-body hover:text-gray-800">What We Do</a>
+                  <a href="/contact" className="block text-body hover:text-gray-800">Contact</a>
+                  <a href="mailto:contact@otiumtech.dev" className="block text-body hover:text-gray-800">contact@otiumtech.dev</a>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-medium mb-4">Legal</h3>
+                <div className="space-y-2">
+                  <a href="/privacy" className="block text-body hover:text-gray-800">Privacy Policy</a>
+                  <a href="/terms" className="block text-body hover:text-gray-800">Terms of Service</a>
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+              <p className="text-body">© 2025 Otium Technology. All rights reserved.</p>
+              <div className="flex space-x-6 mt-4 md:mt-0">
+                <span className="text-body">Twitter</span>
+                <span className="text-body">LinkedIn</span>
+                <span className="text-body">GitHub</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 } 
