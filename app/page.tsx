@@ -45,13 +45,11 @@ export default function Home() {
           <div className="text-center">
             <p className="text-body mb-6 opacity-70">Backed by</p>
             <div className="flex justify-center items-center">
-              <div className="card p-6 inline-flex items-center justify-center">
+              <div className="card p-6 sm:p-8 inline-flex items-center justify-center min-w-[120px] sm:min-w-[160px] md:min-w-[200px]">
                 <img 
-                  src="/ucsd-seal.png" 
+                  src="/ucsd-logo.png" 
                   alt="UC San Diego" 
-                  width="80"
-                  height="80"
-                  className="opacity-90"
+                  className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 opacity-90 object-contain"
                 />
               </div>
             </div>
