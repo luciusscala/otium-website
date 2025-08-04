@@ -3,10 +3,9 @@
 import { useState } from 'react';
 import { Play, ArrowRight, Terminal, Zap, Shield } from 'lucide-react';
 import Link from 'next/link';
+import { SimpleTerminalDemo } from '@/components/SimpleTerminalDemo';
 
 export default function Demo() {
-  const [activeTab, setActiveTab] = useState('overview');
-
   const demoSteps = [
     {
       step: 1,
@@ -46,55 +45,6 @@ export default function Demo() {
     }
   ];
 
-  const getTerminalContent = () => {
-    switch (activeTab) {
-      case 'overview':
-        return (
-          <div className="text-green-400">
-            <div className="mb-2">$ otium &quot;set up nginx with SSL for example.com&quot;</div>
-            <div className="text-gray-300 mb-4">Analyzing requirements...</div>
-            <div className="text-blue-400 mb-2">✓ Installing nginx</div>
-            <div className="text-blue-400 mb-2">✓ Configuring SSL certificate</div>
-            <div className="text-blue-400 mb-2">✓ Setting up firewall rules</div>
-            <div className="text-green-400">✓ Server ready at https://example.com</div>
-          </div>
-        );
-      case 'installation':
-        return (
-          <div className="text-green-400">
-            <div className="mb-2">$ otium install nginx</div>
-            <div className="text-gray-300 mb-4">Checking package manager...</div>
-            <div className="text-blue-400 mb-2">✓ Installing nginx package...</div>
-            <div className="text-blue-400 mb-2">✓ Configuring service...</div>
-            <div className="text-green-400">✓ Installation complete</div>
-          </div>
-        );
-      case 'configuration':
-        return (
-          <div className="text-green-400">
-            <div className="mb-2">$ otium configure ssl</div>
-            <div className="text-gray-300 mb-4">Generating SSL certificate...</div>
-            <div className="text-blue-400 mb-2">✓ Configuring nginx virtual host...</div>
-            <div className="text-blue-400 mb-2">✓ Setting up redirects...</div>
-            <div className="text-green-400">✓ SSL configuration complete</div>
-          </div>
-        );
-      case 'deployment':
-        return (
-          <div className="text-green-400">
-            <div className="mb-2">$ otium deploy</div>
-            <div className="text-gray-300 mb-4">Testing configuration...</div>
-            <div className="text-blue-400 mb-2">✓ Reloading nginx...</div>
-            <div className="text-blue-400 mb-2">✓ Verifying deployment...</div>
-            <div className="text-green-400">✓ Deployment successful!</div>
-            <div className="text-blue-400">→ https://mydomain.com is live</div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -120,34 +70,13 @@ export default function Demo() {
       {/* Interactive Demo Section */}
       <section className="section section-alt">
         <div className="max-w-6xl mx-auto">
-          <div className="card">
-            <div className="flex flex-wrap gap-2 mb-8">
-              {['overview', 'installation', 'configuration', 'deployment'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    activeTab === tab 
-                      ? 'bg-gray-100 text-gray-900' 
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
-                >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                </button>
-              ))}
-            </div>
-
-            <div className="bg-gray-900 rounded-xl p-6 font-mono text-sm border border-gray-200">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-gray-300 ml-2 font-medium">otium-demo</span>
-              </div>
-              
-              {getTerminalContent()}
-            </div>
-          </div>
+          <h2 className="heading-xl mb-8 text-center">Interactive Demo</h2>
+          <p className="text-body-lg text-center mb-12 max-w-3xl mx-auto">
+            Experience Otium in action. Choose a scenario and watch how natural language commands 
+            transform into complete DevOps solutions with AI-powered planning and execution.
+          </p>
+          
+          <SimpleTerminalDemo />
         </div>
       </section>
 
