@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { Play, Pause, RotateCcw, CheckCircle, Loader, Clock, DollarSign, Server, Database, Shield, Zap } from 'lucide-react';
+import { Play, RotateCcw, CheckCircle, Loader, Clock, DollarSign, Server, Zap } from 'lucide-react';
 
 interface DemoScenario {
   id: string;
@@ -30,7 +30,7 @@ export function SimpleTerminalDemo() {
   const [isRunning, setIsRunning] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [showApproval, setShowApproval] = useState(true);
-  const [executionLogs, setExecutionLogs] = useState<string[]>([]);
+  const [executionLogs, setExecutionLogs] = useState<Array<{delay?: number; log: string; icon: string; title?: string; accomplishments?: string[]; totalTime?: string; timeSaved?: string}>>([]);
 
   const scenario = scenarios.find(s => s.id === selectedScenario);
 
@@ -256,7 +256,7 @@ export function SimpleTerminalDemo() {
                         <div>1. Install latest stable NGINX package (v1.18+) via apt</div>
                         <div>2. Configure virtual host for mydomain.com in /etc/nginx/sites-available/</div>
                         <div>3. Set up UFW rules for ports 80 and 443</div>
-                        <div>4. Automatically request Let's Encrypt certificate using Certbot</div>
+                        <div>4. Automatically request Let&apos;s Encrypt certificate using Certbot</div>
                         <div>5. Enable strong SSL settings (TLS 1.2+, HSTS, OCSP stapling)</div>
                         <div>6. Add secure headers (X-Frame-Options, Referrer-Policy, Content-Security-Policy)</div>
                         <div>7. Test NGINX configuration and reload service</div>
@@ -331,7 +331,7 @@ export function SimpleTerminalDemo() {
                               <Server className="w-4 h-4" />
                               What was accomplished:
                             </div>
-                            {log.accomplishments.map((item, i) => (
+                            {log.accomplishments?.map((item, i) => (
                               <div key={i} className="flex items-center gap-2 ml-4">
                                 <CheckCircle className="w-3 h-3 text-green-400" />
                                 {item}

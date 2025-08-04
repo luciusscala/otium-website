@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { Play, Pause, RotateCcw, FastForward } from 'lucide-react';
 import { ScenarioSelector } from './ScenarioSelector';
-import { DemoControls } from './DemoControls';
+
+// import { DemoControls } from './DemoControls';
 import { TerminalDisplay } from './TerminalDisplay';
 
 export interface DemoStep {
@@ -69,7 +70,7 @@ export function TerminalSimulator({
         <ScenarioSelector scenarios={scenarios} onSelect={startScenario} />
       ) : (
         <div className="space-y-4">
-          {showControls && (
+          {/* {showControls && (
             <DemoControls
               isPlaying={isPlaying}
               isPaused={isPaused}
@@ -78,7 +79,7 @@ export function TerminalSimulator({
               scenario={selectedScenario}
               currentStep={currentStep}
             />
-          )}
+          )} */}
           <TerminalDisplay
             scenario={selectedScenario!}
             currentStep={currentStep}

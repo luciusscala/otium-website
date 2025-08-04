@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+
 import { Play, ArrowRight, Terminal, Zap, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { SimpleTerminalDemo } from '@/components/SimpleTerminalDemo';
