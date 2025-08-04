@@ -46,7 +46,7 @@ export default function Features() {
       {/* Features Grid */}
       <section className="section section-alt">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="card text-center">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -66,7 +66,7 @@ export default function Features() {
       <section className="section">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="heading-xl mb-8">Why Choose Otium?</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-3 text-left">
                 <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
