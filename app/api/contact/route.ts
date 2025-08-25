@@ -1,8 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const { name, email, company, message } = await request.json();
@@ -14,6 +12,17 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    // Check if Resend API key is available
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY environment variable is not set');
+      return NextResponse.json(
+        { error: 'Email service is temporarily unavailable. Please contact us directly at contact@otiumtech.dev' },
+        { status: 503 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Send email using Resend
     await resend.emails.send({
