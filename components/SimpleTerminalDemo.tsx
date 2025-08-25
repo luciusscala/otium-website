@@ -144,31 +144,31 @@ export function SimpleTerminalDemo() {
 
   if (!selectedScenario) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div className="text-center">
-          <h2 className="heading-xl mb-4">Choose Your Demo Experience</h2>
-          <p className="text-body-lg max-w-2xl mx-auto">
+          <h2 className="heading-lg mb-4">Choose Your Demo Experience</h2>
+          <p className="text-body-lg max-w-3xl mx-auto">
             Select a scenario to see how Otium transforms complex DevOps tasks into simple commands.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {scenarios.map((scenario) => (
             <div
               key={scenario.id}
               className="card cursor-pointer group transition-all duration-300 hover:scale-105"
               onClick={() => startDemo(scenario.id)}
             >
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">{scenario.title}</h3>
-              <p className="text-body mb-4">{scenario.description}</p>
+              <h3 className="heading-md text-white mb-3">{scenario.title}</h3>
+              <p className="text-body mb-6">{scenario.description}</p>
               
-              <div className="bg-gray-900 rounded-lg p-3 mb-4">
+              <div className="bg-black/50 rounded-lg p-4 mb-6 border border-white/10">
                 <code className="text-green-400 text-sm font-mono">
                   $ {scenario.command}
                 </code>
               </div>
               
-              <button className="w-full btn-primary group-hover:bg-gray-800 transition-colors">
+              <button className="w-full btn-primary group-hover:bg-white/90 transition-colors">
                 Start Demo
               </button>
             </div>
@@ -179,18 +179,18 @@ export function SimpleTerminalDemo() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Demo Controls */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+      <div className="card">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-gray-900">{scenario?.title}</h3>
-            <p className="text-sm text-gray-500">Interactive Demo</p>
+            <h3 className="heading-md text-white">{scenario?.title}</h3>
+            <p className="text-white/60">Interactive Demo</p>
           </div>
           
           <button
             onClick={resetDemo}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            className="btn-secondary flex items-center gap-2"
           >
             <RotateCcw className="w-4 h-4" />
             Choose Different Demo
@@ -199,43 +199,41 @@ export function SimpleTerminalDemo() {
       </div>
 
       {/* Terminal */}
-      <div className="bg-gray-900 rounded-lg overflow-hidden shadow-2xl">
+      <div className="terminal">
         {/* Terminal Header */}
-        <div className="bg-gray-800 px-4 py-3 flex items-center gap-2">
-          <div className="flex gap-2">
-            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+        <div className="terminal-header">
+          <div className="terminal-dots">
+            <div className="terminal-dot red"></div>
+            <div className="terminal-dot yellow"></div>
+            <div className="terminal-dot green"></div>
           </div>
-          <div className="flex-1 text-center">
-            <span className="text-gray-300 text-sm font-medium">otium-demo</span>
-          </div>
+          <span className="text-white/70 text-sm ml-2">otium-demo</span>
         </div>
 
         {/* Terminal Content */}
-        <div className="p-6 font-mono text-sm min-h-[400px] max-h-[600px] overflow-y-auto">
-          <div className="text-gray-300 space-y-4">
-            <div className="mb-4">
-              <span className="text-green-400">user@otium-demo:~$ </span>
-              <span className="text-green-400">{scenario?.command}</span>
+        <div className="terminal-content">
+          <div className="space-y-4">
+            <div className="mb-6">
+              <span className="terminal-prompt">$ </span>
+              <span className="terminal-command">{scenario?.command}</span>
             </div>
 
-            <div className="text-blue-400 flex items-center gap-2">
+            <div className="terminal-info flex items-center gap-2">
               <CheckCircle className="w-4 h-4" />
               Analyzing request...
             </div>
-            <div className="text-blue-400 flex items-center gap-2">
+            <div className="terminal-info flex items-center gap-2">
               <CheckCircle className="w-4 h-4" />
               System: Ubuntu 22.04 LTS detected
             </div>
-            <div className="text-blue-400 flex items-center gap-2">
+            <div className="terminal-info flex items-center gap-2">
               <CheckCircle className="w-4 h-4" />
               {scenario?.id === 'nginx-ssl' 
                 ? 'Checking DNS resolution for mydomain.com...'
                 : 'Validating user privileges and available storage...'
               }
             </div>
-            <div className="text-blue-400 flex items-center gap-2">
+            <div className="terminal-info flex items-center gap-2">
               <CheckCircle className="w-4 h-4" />
               {scenario?.id === 'nginx-ssl' 
                 ? 'Validating permissions and firewall status...'
@@ -245,14 +243,14 @@ export function SimpleTerminalDemo() {
             
             {showApproval && (
               <>
-                <div className="text-yellow-400 mt-6 flex items-center gap-2">
+                <div className="terminal-warning mt-8 flex items-center gap-2">
                   <Server className="w-4 h-4" />
                   Execution Plan:
                 </div>
-                <div className="bg-gray-800 p-4 rounded border-l-4 border-yellow-400 my-4">
-                  <div className="text-gray-300">
+                <div className="bg-black/50 p-6 rounded-lg border border-yellow-500/20 my-6">
+                  <div className="text-white/80">
                     {scenario?.id === 'nginx-ssl' ? (
-                      <div className="space-y-1">
+                      <div className="space-y-2">
                         <div>1. Install latest stable NGINX package (v1.18+) via apt</div>
                         <div>2. Configure virtual host for mydomain.com in /etc/nginx/sites-available/</div>
                         <div>3. Set up UFW rules for ports 80 and 443</div>
@@ -260,7 +258,7 @@ export function SimpleTerminalDemo() {
                         <div>5. Enable strong SSL settings (TLS 1.2+, HSTS, OCSP stapling)</div>
                         <div>6. Add secure headers (X-Frame-Options, Referrer-Policy, Content-Security-Policy)</div>
                         <div>7. Test NGINX configuration and reload service</div>
-                        <div className="mt-3 text-yellow-400 flex items-center gap-2">
+                        <div className="mt-4 text-yellow-400 flex items-center gap-2">
                           <Clock className="w-4 h-4" />
                           Estimated execution time: 4–6 minutes
                         </div>
@@ -270,13 +268,13 @@ export function SimpleTerminalDemo() {
                         </div>
                       </div>
                     ) : (
-                      <div className="space-y-1">
+                      <div className="space-y-2">
                         <div>1. Install PostgreSQL 14 with pg_stat_statements and uuid-ossp extensions</div>
                         <div>2. Configure secure authentication (md5 + SSL with self-signed cert)</div>
                         <div>3. Create application database and non-superuser role</div>
                         <div>4. Set up automated daily backups using pg_dump + cron (stored in /var/backups/pgsql)</div>
                         <div>5. Configure performance monitoring via pg_stat_statements and optional pgwatch2 agent</div>
-                        <div className="mt-3 text-yellow-400 flex items-center gap-2">
+                        <div className="mt-4 text-yellow-400 flex items-center gap-2">
                           <Clock className="w-4 h-4" />
                           Estimated execution time: 5–7 minutes
                         </div>
@@ -289,17 +287,17 @@ export function SimpleTerminalDemo() {
                   </div>
                 </div>
 
-                <div className="flex gap-3 my-6">
+                <div className="flex gap-3 my-8">
                   <button 
                     onClick={approveExecution}
-                    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors flex items-center gap-2"
+                    className="btn-primary flex items-center gap-2"
                   >
                     <CheckCircle className="w-4 h-4" />
                     Approve & Execute
                   </button>
                 </div>
 
-                <div className="text-green-400 mt-6">
+                <div className="terminal-success mt-8">
                   <div className="flex items-center gap-2">
                     <Zap className="w-4 h-4 animate-pulse" />
                     {scenario?.id === 'nginx-ssl' 
@@ -312,21 +310,21 @@ export function SimpleTerminalDemo() {
             )}
 
             {isRunning && (
-              <div className="mt-6 space-y-2">
-                <div className="text-yellow-400 flex items-center gap-2">
+              <div className="mt-8 space-y-3">
+                <div className="terminal-warning flex items-center gap-2">
                   <Play className="w-4 h-4" />
                   Executing plan...
                 </div>
                 {executionLogs.map((log, index) => {
                   if (log.log === 'COMPLETION') {
                     return (
-                      <div key={index} className="mt-6 space-y-3">
-                        <div className="text-green-400 flex items-center gap-2 text-lg">
+                      <div key={index} className="mt-8 space-y-4">
+                        <div className="terminal-success flex items-center gap-2 text-lg">
                           <CheckCircle className="w-5 h-5" />
                           {log.title}
                         </div>
-                        <div className="bg-gray-800 p-4 rounded border-l-4 border-green-400">
-                          <div className="text-gray-300 space-y-2">
+                        <div className="bg-black/50 p-6 rounded-lg border border-green-500/20">
+                          <div className="space-y-3">
                             <div className="flex items-center gap-2 text-green-400 font-semibold">
                               <Server className="w-4 h-4" />
                               What was accomplished:
@@ -334,10 +332,10 @@ export function SimpleTerminalDemo() {
                             {log.accomplishments?.map((item, i) => (
                               <div key={i} className="flex items-center gap-2 ml-4">
                                 <CheckCircle className="w-3 h-3 text-green-400" />
-                                {item}
+                                <span className="text-white/80">{item}</span>
                               </div>
                             ))}
-                            <div className="mt-4 flex items-center gap-4">
+                            <div className="mt-6 flex items-center gap-6">
                               <div className="flex items-center gap-2 text-yellow-400">
                                 <Clock className="w-4 h-4" />
                                 Total time: {log.totalTime}
@@ -354,7 +352,7 @@ export function SimpleTerminalDemo() {
                   }
                   
                   return (
-                    <div key={index} className="text-gray-300 pl-4 flex items-center gap-2">
+                    <div key={index} className="text-white/80 pl-4 flex items-center gap-2">
                       {log.icon === 'check' ? (
                         <CheckCircle className="w-4 h-4 text-green-400" />
                       ) : (
@@ -365,7 +363,7 @@ export function SimpleTerminalDemo() {
                   );
                 })}
                 {isRunning && executionLogs.length > 0 && executionLogs.length < 13 && !executionLogs.some(log => log.log === 'COMPLETION') && (
-                  <div className="text-blue-400 pl-4 flex items-center gap-2">
+                  <div className="terminal-info pl-4 flex items-center gap-2">
                     <Loader className="w-4 h-4 animate-spin" />
                     Executing...
                   </div>

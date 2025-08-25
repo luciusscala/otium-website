@@ -1,6 +1,7 @@
 import { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Header } from '@/components/header';
+import { Footer } from '@/components/footer';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -28,7 +29,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-
 };
 
 export default function RootLayout({
@@ -41,16 +41,17 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#000000" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased bg-black text-white">
         <Header />
         <main>
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

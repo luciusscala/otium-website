@@ -2,21 +2,45 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
+// Client-only wrapper to prevent hydration issues
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return null;
+  }
+
+  return <>{children}</>;
+}
+
 const navigationItems = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'What We Do' },
+  { href: '/changelog', label: 'Changelog' },
   { href: '/features', label: 'Features' },
-  { href: '/demo', label: 'Demo' },
+  { href: '/faq', label: 'FAQs' },
+  { href: '/docs', label: 'Docs' },
   { href: '/contact', label: 'Contact' },
-  { href: '/faq', label: 'FAQ' },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+    // Don't call onScroll immediately to avoid hydration mismatch
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -28,46 +52,61 @@ export function Header() {
 
   return (
     <>
-      <header className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 backdrop-blur-sm bg-white/80 border-b border-gray-200 sticky top-0 z-50">
-        {/* Logo */}
-        <div className="flex-1 flex justify-start">
-          <Link href="/" className="text-2xl font-medium text-black hover:opacity-80 transition-opacity">
-            Φ
-          </Link>
-        </div>
-        
-        {/* Desktop Navigation - Hidden on mobile */}
-        <nav className="hidden md:flex space-x-8">
-          {navigationItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`text-sm font-medium transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-black after:transition-all hover:after:w-full ${
-                pathname === item.href 
-                  ? 'text-black' 
-                  : 'text-gray-600 hover:text-black'
-              }`}
+      <header className="sticky top-0 z-50 backdrop-blur-xl pt-4">
+        <ClientOnly>
+          <div className={`w-full px-4 sm:px-6 lg:px-8 transition-all duration-300 ${isScrolled ? 'max-w-6xl mx-auto mt-5 md:mt-6' : ''}`}>
+            <div
+              className={[
+                'flex items-center justify-between h-16 transition-all duration-300',
+                isScrolled
+                  ? 'rounded-2xl bg-white/90 border border-black/10 shadow-lg px-4'
+                  : 'bg-white/90'
+              ].join(' ')}
             >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        
-        {/* Mobile Menu Button - Visible on mobile only */}
-        <button
-          onClick={toggleMobileMenu}
-          className="md:hidden p-2 text-black hover:bg-gray-100 rounded-lg transition-colors"
-          aria-label="Toggle mobile menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <Menu className="w-6 h-6" />
-          )}
-        </button>
-        
-        {/* Right side spacer for desktop */}
-        <div className="hidden md:block flex-1"></div>
+            {/* Logo */}
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
+                <span className="text-black font-semibold text-xl">Otium</span>
+              </Link>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`nav-link ${
+                    pathname === item.href ? 'active' : ''
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            
+            {/* Desktop CTA */}
+            <div className="hidden md:flex items-center space-x-4">
+              <a href="https://app.otiumtech.dev/dashboard" className="btn-ghost">
+                Log in
+              </a>
+            </div>
+            
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMobileMenu}
+              className="md:hidden p-2 text-black hover:bg-black/10 rounded-lg transition-colors"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
+        </div>
+        </ClientOnly>
       </header>
 
       {/* Mobile Menu Overlay */}
@@ -75,48 +114,35 @@ export function Header() {
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
             onClick={closeMobileMenu}
           />
           
           {/* Mobile Menu */}
-          <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 md:hidden transform transition-transform duration-300 ease-in-out">
-            <div className="flex flex-col h-full">
-              {/* Mobile Menu Header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                <Link 
-                  href="/" 
-                  className="text-2xl font-medium text-black"
-                  onClick={closeMobileMenu}
-                >
-                  Φ
-                </Link>
-                <button
-                  onClick={closeMobileMenu}
-                  className="p-2 text-black hover:bg-gray-100 rounded-lg transition-colors"
-                  aria-label="Close mobile menu"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-              
+          <div className="fixed top-16 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-black/10 z-50 md:hidden">
+            <div className="px-4 py-6 space-y-4">
               {/* Mobile Navigation Links */}
-              <nav className="flex flex-col p-4 space-y-2">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={closeMobileMenu}
-                    className={`px-4 py-3 text-base font-medium rounded-lg transition-colors ${
-                      pathname === item.href
-                        ? 'bg-gray-100 text-black'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-black'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+                    pathname === item.href
+                      ? 'bg-black/10 text-black'
+                      : 'text-black/70 hover:bg-black/5 hover:text-black'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              
+              {/* Mobile CTA */}
+              <div className="pt-4 border-t border-black/10">
+                <a href="https://app.otiumtech.dev/dashboard" className="w-full btn-secondary">
+                  Log in
+                </a>
+              </div>
             </div>
           </div>
         </>

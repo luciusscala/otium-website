@@ -1,0 +1,44 @@
+<svg width="1440" height="810" viewBox="0 0 1440 810" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <rect width="1440" height="810" rx="24" fill="#F8FAFC"/>
+  <rect x="80" y="80" width="1280" height="650" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+  
+  <!-- Modal backdrop -->
+  <rect x="80" y="80" width="1280" height="650" rx="16" fill="rgba(0,0,0,0.1)"/>
+  
+  <!-- Modal -->
+  <rect x="320" y="180" width="800" height="450" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  
+  <!-- Header -->
+  <text x="360" y="230" fill="#1F2937" font-family="Inter, ui-sans-serif" font-size="24" font-weight="700">🔐 Approve execution?</text>
+  
+  <!-- Info section -->
+  <rect x="360" y="260" width="720" height="120" rx="12" fill="#F9FAFB" stroke="#E5E7EB"/>
+  <g font-family="Inter, ui-sans-serif" font-size="16" fill="#374151">
+    <text x="380" y="290" font-weight="600">Change:</text>
+    <text x="460" y="290">Open port 443 and restart nginx</text>
+    
+    <text x="380" y="320" font-weight="600">Risk:</text>
+    <text x="430" y="320" fill="#F59E0B" font-weight="600">Medium (4/10)</text>
+    
+    <text x="380" y="350" font-weight="600">Rationale:</text>
+    <text x="470" y="350">Required for TLS termination</text>
+  </g>
+  
+  <!-- Commands preview -->
+  <rect x="360" y="400" width="720" height="120" rx="12" fill="#1F2937" stroke="#374151"/>
+  <text x="380" y="430" fill="#9CA3AF" font-family="Inter, ui-sans-serif" font-size="16" font-weight="600">Proposed Commands</text>
+  <g font-family="IBM Plex Mono, ui-monospace" font-size="15" fill="#E5E7EB">
+    <text x="380" y="460">ufw allow 443/tcp</text>
+    <text x="380" y="485">systemctl restart nginx</text>
+  </g>
+  
+  <!-- Buttons -->
+  <rect x="360" y="550" width="180" height="55" rx="12" fill="#10B981" stroke="#059669"/>
+  <text x="450" y="585" text-anchor="middle" fill="white" font-family="Inter, ui-sans-serif" font-size="16" font-weight="600">✓ Approve</text>
+  
+  <rect x="580" y="550" width="180" height="55" rx="12" fill="#F3F4F6" stroke="#D1D5DB"/>
+  <text x="670" y="585" text-anchor="middle" fill="#374151" font-family="Inter, ui-sans-serif" font-size="16" font-weight="600">✕ Reject</text>
+  
+  <rect x="800" y="550" width="180" height="55" rx="12" fill="#F3F4F6" stroke="#D1D5DB"/>
+  <text x="890" y="585" text-anchor="middle" fill="#374151" font-family="Inter, ui-sans-serif" font-size="16" font-weight="600">Details</text>
+</svg>
