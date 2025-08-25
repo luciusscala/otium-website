@@ -341,6 +341,17 @@ body {
   color: #000000;
 }
 
+.nav-link:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #000000, transparent);
+  opacity: 1;
+}
+
 .nav-link.active {
   color: #000000;
 }

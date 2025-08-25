@@ -52,7 +52,7 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 backdrop-blur-xl pt-4">
+      <header className="sticky top-0 z-50 backdrop-blur-xl pt-2">
         <ClientOnly>
           <div className={`w-full px-4 sm:px-6 lg:px-8 transition-all duration-300 ${isScrolled ? 'max-w-6xl mx-auto mt-5 md:mt-6' : ''}`}>
             <div
