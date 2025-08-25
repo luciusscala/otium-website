@@ -52,12 +52,12 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 backdrop-blur-xl pt-2">
+      <header className="sticky top-0 z-50 backdrop-blur-xl py-1">
         <ClientOnly>
-          <div className={`w-full px-4 sm:px-6 lg:px-8 transition-all duration-300 ${isScrolled ? 'max-w-6xl mx-auto mt-5 md:mt-6' : ''}`}>
+          <div className={`w-full px-4 sm:px-6 lg:px-8 transition-all duration-300 flex items-center ${isScrolled ? 'max-w-6xl mx-auto' : ''}`}>
             <div
               className={[
-                'flex items-center justify-between h-16 transition-all duration-300',
+                'flex items-center justify-between h-16 transition-all duration-300 w-full',
                 isScrolled
                   ? 'rounded-2xl bg-white/90 border border-black/10 shadow-lg px-4'
                   : 'bg-white/90'
