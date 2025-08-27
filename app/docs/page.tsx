@@ -1,14 +1,27 @@
 "use client";
 
+import DocumentCard from '../../components/DocumentCard';
+
 export default function DocsPage() {
   return (
-    <div className="min-h-screen pt-16 flex items-center justify-center">
-      <div className="text-center px-4">
-        <h1 className="text-6xl md:text-7xl font-bold mb-6 text-gray-900">Docs</h1>
-        <p className="text-2xl text-gray-600 mb-8">Coming Soon</p>
-        <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-          We&apos;re working hard on comprehensive documentation. In the meantime, check out our <a href="/demo" className="text-blue-600 hover:text-blue-700 underline">demo</a> or <a href="/contact" className="text-blue-600 hover:text-blue-700 underline">contact us</a> for help.
-        </p>
+    <div className="min-h-screen pt-16 bg-gray-50">
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* Page Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Documentation</h1>
+          <p className="text-gray-600">Latest updates and announcements from Otium</p>
+        </div>
+        
+        {/* Document Cards */}
+        <div className="space-y-4">
+          <DocumentCard
+            title="Initial Public Launch"
+            date="August 25, 2025"
+            tag="Launch"
+            preview="Otium is now available!"
+            href="/docs/launch-post"
+          />
+        </div>
       </div>
     </div>
   );
